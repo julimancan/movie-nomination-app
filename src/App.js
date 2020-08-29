@@ -19,6 +19,7 @@ import SearchBox from "./components/SearchBox/SearchBox";
 import ColCardBox from "./components/ColCardBox/ColCardBox";
 import MovieDetail from "./components/MovieDetail/MovieDetail";
 import Loader from "./components/Loader/Loader";
+import LoginButton from "./components/LoginButton/LoginButton";
 
 
 
@@ -67,9 +68,11 @@ export default function App() {
   return (
     // <Router>
       <div className="App">
+
         <Layout className="layout">
           <Header>
             <div style={{ textAlign: "center" }}>
+            <LoginButton />
               <TextTitle style={{ color: "#ffffff", marginTop: "14px" }} level={3}>OMDB API + React</TextTitle>
             </div>
           </Header>
