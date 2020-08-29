@@ -20,13 +20,12 @@ import ColCardBox from "./components/ColCardBox/ColCardBox";
 import MovieDetail from "./components/MovieDetail/MovieDetail";
 import Loader from "./components/Loader/Loader";
 import LoginButton from "./components/LoginButton/LoginButton";
+import LogoutButton from "./components/LogoutButton/LogoutButton";
+import User from "./components/User/User";
 
 
 
-// const {
-//   user,
-//   isAuthenticated
-// } = useAuth0();
+
 
 
 const API_KEY = "a98b42a1";
@@ -41,6 +40,7 @@ export default function App() {
   const [activateModal, setActivateModal] = useState(false);
   const [detail, setShowDetail] = useState(false);
   const [detailRequest, setDetailRequest] = useState(false);
+  const { isLoading } = useAuth0();
 
   useEffect(() => {
 
@@ -65,6 +65,7 @@ export default function App() {
     })
   }, [q]);
 
+  if (isLoading) return <div>Loading...</div>
   return (
     // <Router>
       <div className="App">
@@ -72,7 +73,6 @@ export default function App() {
         <Layout className="layout">
           <Header>
             <div style={{ textAlign: "center" }}>
-            <LoginButton />
               <TextTitle style={{ color: "#ffffff", marginTop: "14px" }} level={3}>OMDB API + React</TextTitle>
             </div>
           </Header>
@@ -80,6 +80,9 @@ export default function App() {
             <div styl={{ background: "#fff", pagging: 24, minHeight: 280}}>
               <SearchBox searchHandler={setQuery} />
               <br />
+            <LoginButton />
+            <LogoutButton />
+            <User />
               <Row gutter={16} type="flex" justify="center">
                 {/* { loading && 
                   <Loader />
