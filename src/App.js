@@ -19,9 +19,9 @@ import SearchBox from "./components/SearchBox/SearchBox";
 import ColCardBox from "./components/ColCardBox/ColCardBox";
 import MovieDetail from "./components/MovieDetail/MovieDetail";
 import Loader from "./components/Loader/Loader";
-import LoginButton from "./components/LoginButton/LoginButton";
-import LogoutButton from "./components/LogoutButton/LogoutButton";
+
 import User from "./components/User/User";
+import Navigation from "./components/Navigation/Navigation";
 
 
 
@@ -55,7 +55,15 @@ export default function App() {
       if (response.Response === 'False') {
         setError(response.Error);
       } else {
-        setData(response.Search);
+        const respArr = []
+        response.Search.map(movie => {
+          if (movie.Type === "movie") {
+            respArr.push(movie)
+          } 
+        })
+        console.log("respArr", respArr)
+        setData(respArr);
+        console.log("data", data)
       }
       setLoading(false)
     })
@@ -71,17 +79,18 @@ export default function App() {
       <div className="App">
 
         <Layout className="layout">
+          <Navigation/>
+              <br />
           <Header>
             <div style={{ textAlign: "center" }}>
-              <TextTitle style={{ color: "#ffffff", marginTop: "14px" }} level={3}>OMDB API + React</TextTitle>
+              <TextTitle style={{ color: "#ffffff", marginTop: "14px" }} level={3}>APP made with OMDB API + React</TextTitle>
             </div>
           </Header>
+              <br />
           <Content style ={{ padding: "0 50px" }}>
             <div styl={{ background: "#fff", pagging: 24, minHeight: 280}}>
               <SearchBox searchHandler={setQuery} />
               <br />
-            <LoginButton />
-            <LogoutButton />
             <User />
               <Row gutter={16} type="flex" justify="center">
                 {/* { loading && 
