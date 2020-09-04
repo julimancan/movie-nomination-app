@@ -1,5 +1,6 @@
-import React from "react";
-import { Table } from "antd";
+import React, { useEffect, useState } from "react";
+import { Table, Drawer, Button } from "antd";
+
 
 const columns = [
   { title: "Name", dataIndex: "name", key: "name" },
@@ -34,9 +35,32 @@ const data = [
   },
 ];
 
-const Nominations = () => {
+const Nominations = (props) => {
+
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const {} = props;
+
+  const toggleDrawer = () => setDrawerOpen(!drawerOpen);
+
+  const DrawerButton = () => {
+    return (
+      <Button onClick={() => setDrawerOpen(true)}>Your Nominees</Button>
+    )
+  }
+
+  const onClose = () => setDrawerOpen(false);
+
   return (
     <div>
+      <DrawerButton onClick={toggleDrawer}/>
+      <Drawer 
+        visible={drawerOpen}
+        destroyOnClose
+        title = "Your nominees are:"
+        onClose={onClose}
+        width={"50em"}
+      >
       <Table
         columns={columns}
         expandable={{
@@ -48,6 +72,7 @@ const Nominations = () => {
         dataSource={data}
       />
       ,
+      </Drawer>
     </div>
   );
 };

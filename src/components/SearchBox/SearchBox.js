@@ -13,7 +13,8 @@ export default function SearchBox ({searchHandler}) {
   return (
     <Row>
       <Col span={12} offset={6}>
-        <Search
+        <Search 
+          autoFocus
           placeholder="enter movie"
           enterButton="Search"
           size="large"

@@ -5,14 +5,20 @@ import {
   Col,
   Card,
   Tag,
-  Typography
+  Typography,
+  Button
 } from 'antd';
 import 'antd/dist/antd.css';
 
 const API_KEY = "a98b42a1";
 const { Meta } = Card;
 
-export default function ColCardBox ({Title, imdbID, Poster, Type, ShowDetail, DetailRequest, ActivateModal}) {
+const buttonStyle = {
+  borderColor: "black",
+  color: "black"
+}
+
+export default function ColCardBox ({Title, imdbID, Poster, Type, setShowDetail, DetailRequest, ActivateModal}) {
   const clickHandler = () => {
     ActivateModal(true);
     DetailRequest(true);
@@ -22,12 +28,13 @@ export default function ColCardBox ({Title, imdbID, Poster, Type, ShowDetail, De
     .then(resp => resp.json())
     .then(response => {
       DetailRequest(false);
-      ShowDetail(response);
+      setShowDetail(response);
     })
     .catch(({message}) => {
       DetailRequest(false);
     })
   }
+
   return (
     <Col style={{margin: "20px 0"}} className="gutter-row" span={4}>
       <div className="gutter-box">
@@ -39,7 +46,7 @@ export default function ColCardBox ({Title, imdbID, Poster, Type, ShowDetail, De
               src={Poster === "N/A" ? "https://placehold.it/198X264&text=Image+Not+Found" : Poster}
             />
           }
-          onClick={() => clickHandler()}
+          // onClick={() => clickHandler()}
         >
           <Meta
             title={Title}
@@ -47,7 +54,7 @@ export default function ColCardBox ({Title, imdbID, Poster, Type, ShowDetail, De
           />
           <Row style={{marginTop: "10px"}} className="gutter-row">
             <Col>
-              <Tag color="magenta">{Type}</Tag>
+              <Button ghost style={buttonStyle} onClick={() => clickHandler()} >Nominate</Button>
             </Col>
           </Row>
         </Card>
