@@ -36,28 +36,21 @@ export default function App() {
   const [detail, setShowDetail] = useState(false);
   const [detailRequest, setDetailRequest] = useState(false);
   const { isLoading } = useAuth0();
-
+  const [userNominations, setUserNominations] = useState({});
+  // const userNominations = [];
   useEffect(() => {
     setLoading(true);
     setError(null);
     setData(null);
 
-    fetch(`http://www.omdbapi.com/?s=${q}&apikey=${API_KEY}`)
+    fetch(`http://www.omdbapi.com/?s=${q}&type=movie&apikey=${API_KEY}`)
       .then((resp) => resp)
       .then((resp) => resp.json())
       .then((response) => {
         if (response.Response === "False") {
           setError(response.Error);
         } else {
-          const respArr = [];
-          response.Search.map((movie) => {
-            if (movie.Type === "movie") {
-              respArr.push(movie);
-            }
-          });
-          console.log("respArr", respArr);
-          setData(respArr);
-          console.log("data", data);
+          setData(response.Search);
         }
         setLoading(false);
       })
@@ -66,7 +59,9 @@ export default function App() {
         setLoading(false);
       });
   }, [q]);
+  console.log("userNominations in app.js", userNominations)
   if (isLoading) return <div>Loading...</div>;
+  
   return (
     // <Router>
     <div className="App">
@@ -86,7 +81,9 @@ export default function App() {
         <br />
         <Content style={{ padding: "0 50px" }}>
           <div styl={{ background: "#fff", pagging: 24, minHeight: 280 }}>
-            <User />
+            <User 
+              userNominations={userNominations}
+            />
             <SearchBox  searchHandler={setQuery} />
             <br />
             <Row gutter={16} type="flex" justify="center">
@@ -111,6 +108,7 @@ export default function App() {
                     ActivateModal={setActivateModal}
                     key={index}
                     {...result}
+                    
                   />
                 ))
               )}
@@ -124,7 +122,7 @@ export default function App() {
             footer={null}
             width={800}
           >
-            {detailRequest === false ? <MovieDetail movie={detail} /> : <Loader />}
+            {detailRequest === false ? <MovieDetail movie={detail} userNominations={userNominations} setUserNominations={setUserNominations} /> : <Loader />}
           </Modal>
         </Content>
         <Footer style={{ textAlign: "center" }}>OMDB Movies 2019</Footer>

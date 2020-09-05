@@ -5,15 +5,15 @@ import Nominations from "./Nominations";
 const imageStyle = {
   maxHeight: "5em"
 }
-const User = () => {
+const User = (props) => {
   const { user, isAuthenticated } = useAuth0();
-
+  console.log("props in user", props)
   return (
     isAuthenticated && (
       <div>
         <h2>{user.name}</h2>
         <img style={imageStyle} src={user.picture} alt={user.name} />
-        <Nominations />
+        <Nominations props={props}/>
       </div>
     )
   );

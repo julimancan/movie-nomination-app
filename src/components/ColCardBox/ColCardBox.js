@@ -23,7 +23,7 @@ export default function ColCardBox ({Title, imdbID, Poster, Type, setShowDetail,
     ActivateModal(true);
     DetailRequest(true);
 
-    fetch(`http://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}`)
+    fetch(`http://www.omdbapi.com/?i=${imdbID}&type=movie&apikey=${API_KEY}`)
     .then(resp => resp)
     .then(resp => resp.json())
     .then(response => {
@@ -36,7 +36,7 @@ export default function ColCardBox ({Title, imdbID, Poster, Type, setShowDetail,
   }
 
   return (
-    <Col style={{margin: "20px 0"}} className="gutter-row" span={4}>
+    <Col style={{margin: "20px 2em"}} className="gutter-row" span={4}>
       <div className="gutter-box">
         <Card
           style={{ width: 200 }}
@@ -44,9 +44,9 @@ export default function ColCardBox ({Title, imdbID, Poster, Type, setShowDetail,
             <img
               alt={Title}
               src={Poster === "N/A" ? "https://placehold.it/198X264&text=Image+Not+Found" : Poster}
+              onClick={() => clickHandler()}
             />
           }
-          // onClick={() => clickHandler()}
         >
           <Meta
             title={Title}
@@ -54,7 +54,7 @@ export default function ColCardBox ({Title, imdbID, Poster, Type, setShowDetail,
           />
           <Row style={{marginTop: "10px"}} className="gutter-row">
             <Col>
-              <Button ghost style={buttonStyle} onClick={() => clickHandler()} >Nominate</Button>
+              <Button ghost style={buttonStyle} onClick={() => clickHandler()} >Details and Nominate</Button>
             </Col>
           </Row>
         </Card>

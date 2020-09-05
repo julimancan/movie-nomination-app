@@ -11,42 +11,48 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 
 
-export default function MovieDetail (props) {
+export default function MovieDetail ({movie, userNominations, setUserNominations}) {
   const TextTitle = Typography.Title;
   const { isAuthenticated } = useAuth0();
+  const clickHandler = () => {
+    
+    console.log("userNominations in movieDetails", userNominations)
+  };
   return (
     
     <Row>
       <Col span={11}>
         <img 
-          src={props.movie.Poster === "N/A" ? "https://placehold.it/198x264&text=Image+Not+Found" : props.movie.Poster}
-          alt={props.movie.Title}
+          src={movie.Poster === "N/A" ? "https://placehold.it/198x264&text=Image+Not+Found" : movie.Poster}
+          alt={movie.Title}
         />
       </Col>
       <Col span={13}>
         
       
-          {isAuthenticated &&   <Row><button>Click here to nominate</button> </Row>} 
+          {isAuthenticated &&   <Row><button onClick={clickHandler}>Click here to nominate</button> </Row>} 
        
         <Row>
           <Col span={21}>
             <TextTitle level={4}>
-              {props.movie.Title}
+              {movie.Title}
             </TextTitle>
           </Col>
           <Col span={3} style={{textAlign: 'right'}}>
-            <TextTitle level={4}><span style={{color: "purple"}}>{props.movie.imdbRating}</span></TextTitle>
+            <TextTitle level={4}><span style={{color: "purple"}}>{movie.imdbRating}</span></TextTitle>
           </Col>
         </Row>
         <Row style={{marginBottom: "20px"}}>
           <Col>
-            <Tag>{props.movie.Rated}</Tag>
-            <Tag>{props.movie.Runtime}</Tag>
-            <Tag>{props.movie.Genre}</Tag>
+            <Tag>{movie.Rated}</Tag>
+            <Tag>{movie.Runtime}</Tag>
+            <Tag>{movie.Genre}</Tag>
+            <Tag>{movie.Year}</Tag>
+            <Tag>{movie.Type}</Tag>
           </Col>
         </Row>
         <Row>
-          <Col>{props.movie.Plot}</Col>
+          <Col>{movie.Plot}</Col>
         </Row>
       </Col>
     </Row>
