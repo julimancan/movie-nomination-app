@@ -13,20 +13,22 @@ const headerStyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+
 };
 
 const titleStyle = {
-  color: "grey",
+  color: "#BBBD71",
+  fontFamily: 'Teko, sans-serif',
 };
 
 const TextTitle = Typography.Title;
 
-const NavBar = () => {
+const Navbar = () => {
   const [q, setQuery] = useState("batman");
 
   return (
     <div>
-      <Menu mode="horizontal" style={headerStyle}>
+      <Menu mode="horizontal" style={headerStyle} selectable="false">
         <Menu.Item key="mail">
           <TextTitle className="logo">
             <a style={titleStyle} href="">
@@ -43,4 +45,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Navbar;

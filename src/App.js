@@ -21,7 +21,7 @@ import MovieDetail from "./components/MovieDetail/MovieDetail";
 import Loader from "./components/Loader/Loader";
 
 import User from "./components/User/User";
-import Navigation from "./components/Navigation/Navigation";
+import Navbar from "./components/Navigation/Navbar";
 import { GlobalContext, GlobalProvider } from "./context/GlobalState";
 
 const API_KEY = "a98b42a1";
@@ -29,22 +29,28 @@ const { Header, Content, Footer } = Layout;
 const TextTitle = Typography.Title;
 
 const contentStyle = {
-  background: "#fff",
   pagging: 26,
-  minHeight: 280,
 };
+const headerStyle = {
+  backgroundColor: "white",
+  maxHeight: "2em"
+}
 const userSearch = {
   display: "flex",
-  border: "solid",
   justify: "space-around",
   flexDirection: "row",
-  justifyContent: "space-around",
+  justifyContent: "center",
   alignItems: "center",
+  backgroundColor: "white",
+  margin: "2em"
 };
 const titleTextStyle = {
-  color: "#ffffff",
-  marginTop: "14px",
+  color: "rgba(89,91,24,1)",
 };
+const pageStyle = {
+  backgroundColor: "white",
+  minHeight: "97vh"
+}
 
 export default function App() {
   const [data, setData] = useState(null);
@@ -81,10 +87,10 @@ export default function App() {
 
   return (
     <GlobalProvider>
-      <Layout className="layout">
-        <Navigation />
+      <Layout style={pageStyle} className="layout">
+        <Navbar />
         <br />
-        <Header>
+        <Header style={headerStyle} >
           <div style={{ textAlign: "center" }}>
             <TextTitle style={titleTextStyle} level={3}>
               APP made with OMDB API + React
@@ -96,17 +102,18 @@ export default function App() {
           <div style={contentStyle}>
             <Layout style={userSearch}>
               <User />
-              <SearchBox style={{ width: "100%" }} searchHandler={setQuery} />
-            </Layout>
+              <div>
+                <SearchBox searchHandler={setQuery} />
+                {q === null &&  <Alert message="Enter your movie search above" type="warning"/>}
+              </div>
+              </Layout>
             <Row gutter={16} type="flex" justify="center">
               {error !== null && (
                 <div style={{ margin: "20px 0" }}>
                   <Alert message={error} type="error" />
                 </div>
               )}
-              {q === null ? (
-                <div>Enter your movie search above</div>
-              ) : (
+              {q !== null && (
                 data !== null &&
                 data.length > 0 &&
                 data.map((result, index) => (
@@ -120,6 +127,7 @@ export default function App() {
                 ))
               )}
             </Row>
+ 
           </div>
           <Modal
             title="Movie Detail"
@@ -136,7 +144,6 @@ export default function App() {
             )}
           </Modal>
         </Content>
-        <Footer />
       </Layout>
     </GlobalProvider>
   );

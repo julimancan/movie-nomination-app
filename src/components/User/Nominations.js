@@ -4,7 +4,10 @@ import { GlobalContext } from "../../context/GlobalState";
 
 const buttonStyle = {
   // borderColor: "grey",
-  // color: "grey"
+  // backgroundColor: "rgba(89,91,24,1)",
+  margin: ".3em",
+  border: "solid 0.1em",
+  width: "98px",
 };
 
 
@@ -17,7 +20,7 @@ const Nominations = () => {
 
   const DrawerButton = () => {
     return (
-      <Button text style={buttonStyle} onClick={() => setDrawerOpen(true)}>Your Nominees</Button>
+      <Button text style={buttonStyle} onClick={() => setDrawerOpen(true)}>Nominees</Button>
     )
   }
 
@@ -38,7 +41,7 @@ const Nominations = () => {
   
   return (
     <div>
-      <DrawerButton onClick={toggleDrawer}/>
+      <DrawerButton style={buttonStyle} onClick={toggleDrawer}/>
       <Drawer 
         visible={drawerOpen}
         destroyOnClose

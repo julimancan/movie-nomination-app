@@ -12,7 +12,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 export default function SearchBox ({searchHandler}) {
   const { isAuthenticated } = useAuth0();
   const searchStyle = {
-    width:  isAuthenticated ? "30em" : "40em"
+    width:  isAuthenticated ? "30em" : "40em",
+    margin: ".5em"
   }
   const { Search } = Input;
   const resetSearch = () => searchHandler("")

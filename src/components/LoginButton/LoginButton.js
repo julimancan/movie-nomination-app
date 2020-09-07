@@ -3,7 +3,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "antd";
 
 const buttonStyle = {
-  borderColor: "green",
+  borderColor: "rgba(89,91,24,1)",
+  color: "rgba(89,91,24,1)"
 };
 
 const LoginButton = () => {
