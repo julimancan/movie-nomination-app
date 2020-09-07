@@ -4,7 +4,8 @@ import {
   Row,
   Col,
   Tag,
-  Typography
+  Typography,
+  Button
 } from 'antd';
 import 'antd/dist/antd.css';
 import { useAuth0 } from "@auth0/auth0-react";
@@ -35,7 +36,7 @@ export default function MovieDetail ({movie, userNominations, setUserNominations
       <Col span={13}>
         
       
-          {isAuthenticated &&   <Row><button disabled={nominatedButtonDisabled} onClick={() => addMovieToNominated(movie)}>Click here to nominate</button> </Row>} 
+          {isAuthenticated &&   <Row><Button disabled={nominatedButtonDisabled} onClick={() => addMovieToNominated(movie)}>Click here to nominate</Button> </Row>} 
        
         <Row>
           <Col span={21}>

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Table, Drawer, Button } from "antd";
+import { GlobalContext } from "../../context/GlobalState";
 
 
 const columns = [
-  { title: "Name", dataIndex: "name", key: "name" },
+  { title: "Title", dataIndex: "Title", key: "Title" },
   {
     title: "Action",
     dataIndex: "",
@@ -12,32 +13,11 @@ const columns = [
   },
 ];
 
-const data = [
-  {
-    key: 1,
-    name: "Batman",
-  },
-  {
-    key: 2,
-    name: "Superman",
-  },
-  {
-    key: 3,
-    name: "Fartman",
-  },
-  {
-    key: 4,
-    name: "Anttman",
-  },
-  {
-    key: 5,
-    name: "Atoman",
-  },
-];
 
 const Nominations = (props) => {
 
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const { nominatedMovies } = useContext(GlobalContext);
 
   const {} = props;
 
@@ -69,7 +49,7 @@ const Nominations = (props) => {
           ),
           rowExpandable: (record) => record.name !== "Not Expandable",
         }}
-        dataSource={data}
+        dataSource={nominatedMovies}
       />
       ,
       </Drawer>
