@@ -124,7 +124,7 @@ export default function App() {
             footer={null}
             width={800}
           >
-            {detailRequest === false ? <MovieDetail movie={detail} userNominations={userNominations} setUserNominations={setUserNominations} /> : <Loader />}
+            {detailRequest === false ? <MovieDetail movie={detail}/> : <Loader />}
           </Modal>
         </Content>
         <Footer style={{ textAlign: "center" }}>OMDB Movies 2019</Footer>

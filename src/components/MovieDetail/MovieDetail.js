@@ -13,7 +13,7 @@ import { GlobalContext } from "../../context/GlobalState";
 
 
 
-export default function MovieDetail ({movie, userNominations, setUserNominations}) {
+export default function MovieDetail ({ movie }) {
   const TextTitle = Typography.Title;
   const { isAuthenticated } = useAuth0();
   const { addMovieToNominated, nominatedMovies } = useContext(GlobalContext);

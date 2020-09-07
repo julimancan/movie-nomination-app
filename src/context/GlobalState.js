@@ -14,11 +14,17 @@ export const GlobalProvider = (props) => {
   useEffect(() => {
     localStorage.setItem('nominatedMovies', JSON.stringify(state.nominatedMovies))
   }, [state])
+
   const addMovieToNominated = movie => {
     dispatch({ type: "ADD_MOVIE", payload: movie })
   }
+  
+  const deleteMovieFromNominated = (imdbID) => {
+    dispatch({ type: "DELETE_MOVIE_FROM_NOMINATED", payload: imdbID });
+  }
+
   return (
-    <GlobalContext.Provider value={{ nominatedMovies: state.nominatedMovies, addMovieToNominated }}>
+    <GlobalContext.Provider value={{ nominatedMovies: state.nominatedMovies, addMovieToNominated, deleteMovieFromNominated }}>
       {props.children}
     </GlobalContext.Provider>
   );

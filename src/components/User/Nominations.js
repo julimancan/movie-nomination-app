@@ -2,35 +2,41 @@ import React, { useContext, useState } from "react";
 import { Table, Drawer, Button } from "antd";
 import { GlobalContext } from "../../context/GlobalState";
 
-
-const columns = [
-  { title: "Title", dataIndex: "Title", key: "Title" },
-  {
-    title: "Action",
-    dataIndex: "",
-    key: "x",
-    render: () => <a>Delete</a>,
-  },
-];
+const buttonStyle = {
+  // borderColor: "grey",
+  // color: "grey"
+};
 
 
-const Nominations = (props) => {
+const Nominations = ({ movie }) => {
 
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const { nominatedMovies } = useContext(GlobalContext);
-
-  const {} = props;
+  const { nominatedMovies, deleteMovieFromNominated } = useContext(GlobalContext);
 
   const toggleDrawer = () => setDrawerOpen(!drawerOpen);
 
   const DrawerButton = () => {
     return (
-      <Button onClick={() => setDrawerOpen(true)}>Your Nominees</Button>
+      <Button text style={buttonStyle} onClick={() => setDrawerOpen(true)}>Your Nominees</Button>
     )
   }
 
+  console.log("nominatedMovies", nominatedMovies)
   const onClose = () => setDrawerOpen(false);
 
+  const columns = [
+    { title: "Title", dataIndex: "Title", key: "Title" },
+    {
+      title: "Action",
+      dataIndex: "",
+      key: "x",
+      render: (movie, record) => <Button 
+                      onClick={() => deleteMovieFromNominated(movie.imdbID)} 
+                      // onClick={(e) => { this.onDelete(record.key, e); }}
+                    >Delete</Button>,
+    },
+  ];
+  
   return (
     <div>
       <DrawerButton onClick={toggleDrawer}/>
