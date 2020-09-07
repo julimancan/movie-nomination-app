@@ -5,7 +5,8 @@ import {
   Col,
   Tag,
   Typography,
-  Button
+  Button,
+  Alert
 } from 'antd';
 import 'antd/dist/antd.css';
 import { useAuth0 } from "@auth0/auth0-react";
@@ -36,7 +37,9 @@ export default function MovieDetail ({ movie }) {
       <Col span={13}>
         
       
-          {isAuthenticated &&   <Row><Button disabled={nominatedButtonDisabled} onClick={() => addMovieToNominated(movie)}>Click here to nominate</Button> </Row>} 
+          {isAuthenticated && 
+          nominatedMovies.length >= 5 ? <Alert message='There are already 5 nominees! Thank you for participating.' type="warning"/> :
+          <Row><Button disabled={nominatedButtonDisabled} onClick={() => addMovieToNominated(movie)}>Click here to nominate</Button> </Row>} 
        
         <Row>
           <Col span={21}>

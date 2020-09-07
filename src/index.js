@@ -5,10 +5,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Auth0Provider } from '@auth0/auth0-react';
 
-// const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-const domain = 'juliman.us.auth0.com';
-// const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-const clientId = 'kmxPPJ2qJKYZSmqnGi3Y2lRFCUyGCgc2';
+const domain = process.env.REACT_APP_AUTH0_DOMAIN;
+const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 ReactDOM.render(
   <Auth0Provider
     domain={domain}
