@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 // import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { 
   Row,
@@ -8,16 +8,21 @@ import {
 } from 'antd';
 import 'antd/dist/antd.css';
 import { useAuth0 } from "@auth0/auth0-react";
+import { GlobalContext } from "../../context/GlobalState";
 
 
 
 export default function MovieDetail ({movie, userNominations, setUserNominations}) {
   const TextTitle = Typography.Title;
   const { isAuthenticated } = useAuth0();
-  const clickHandler = () => {
-    
-    console.log("userNominations in movieDetails", userNominations)
-  };
+  const { addMovieToNominated, nominatedMovies } = useContext(GlobalContext);
+
+  let storedMovie = nominatedMovies.find(o => o.imdbID === movie.imdbID);
+
+  console.log("storedMovie", storedMovie)
+
+  const nominatedButtonDisabled = storedMovie = storedMovie ? true : false;
+
   return (
     
     <Row>
@@ -30,7 +35,7 @@ export default function MovieDetail ({movie, userNominations, setUserNominations
       <Col span={13}>
         
       
-          {isAuthenticated &&   <Row><button onClick={clickHandler}>Click here to nominate</button> </Row>} 
+          {isAuthenticated &&   <Row><button disabled={nominatedButtonDisabled} onClick={() => addMovieToNominated(movie)}>Click here to nominate</button> </Row>} 
        
         <Row>
           <Col span={21}>

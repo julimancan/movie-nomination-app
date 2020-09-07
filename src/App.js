@@ -22,6 +22,7 @@ import Loader from "./components/Loader/Loader";
 
 import User from "./components/User/User";
 import Navigation from "./components/Navigation/Navigation";
+import { GlobalContext, GlobalProvider } from "./context/GlobalState";
 
 const API_KEY = "a98b42a1";
 const { Header, Content, Footer } = Layout;
@@ -64,6 +65,7 @@ export default function App() {
   
   return (
     // <Router>
+    <GlobalProvider>
     <div className="App">
       <Layout className="layout">
         <Navigation />
@@ -128,7 +130,7 @@ export default function App() {
         <Footer style={{ textAlign: "center" }}>OMDB Movies 2019</Footer>
       </Layout>
     </div>
-    // </Router>
+    </GlobalProvider>
   );
 }
 
