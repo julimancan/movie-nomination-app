@@ -8,7 +8,7 @@ const buttonStyle = {
 };
 
 
-const Nominations = ({ movie }) => {
+const Nominations = () => {
 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { nominatedMovies, deleteMovieFromNominated } = useContext(GlobalContext);
@@ -21,7 +21,6 @@ const Nominations = ({ movie }) => {
     )
   }
 
-  console.log("nominatedMovies", nominatedMovies)
   const onClose = () => setDrawerOpen(false);
 
   const columns = [

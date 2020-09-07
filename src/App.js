@@ -28,6 +28,24 @@ const API_KEY = "a98b42a1";
 const { Header, Content, Footer } = Layout;
 const TextTitle = Typography.Title;
 
+const contentStyle = {
+  background: "#fff",
+  pagging: 26,
+  minHeight: 280,
+};
+const userSearch = {
+  display: "flex",
+  border: "solid",
+  justify: "space-around",
+  flexDirection: "row",
+  justifyContent: "space-around",
+  alignItems: "center",
+};
+const titleTextStyle = {
+  color: "#ffffff",
+  marginTop: "14px",
+};
+
 export default function App() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -37,8 +55,7 @@ export default function App() {
   const [detail, setShowDetail] = useState(false);
   const [detailRequest, setDetailRequest] = useState(false);
   const { isLoading } = useAuth0();
-  const [userNominations, setUserNominations] = useState({});
-  // const userNominations = [];
+
   useEffect(() => {
     setLoading(true);
     setError(null);
@@ -60,39 +77,28 @@ export default function App() {
         setLoading(false);
       });
   }, [q]);
-  console.log("userNominations in app.js", userNominations)
   if (isLoading) return <div>Loading...</div>;
-  
+
   return (
-    // <Router>
     <GlobalProvider>
-    <div className="App">
       <Layout className="layout">
         <Navigation />
         <br />
         <Header>
           <div style={{ textAlign: "center" }}>
-            <TextTitle
-              style={{ color: "#ffffff", marginTop: "14px" }}
-              level={3}
-            >
+            <TextTitle style={titleTextStyle} level={3}>
               APP made with OMDB API + React
             </TextTitle>
           </div>
         </Header>
         <br />
-        <Content style={{ padding: "0 50px" }}>
-          <div styl={{ background: "#fff", pagging: 24, minHeight: 280 }}>
-            <User 
-              userNominations={userNominations}
-            />
-            <SearchBox  searchHandler={setQuery} />
-            <br />
+        <Content>
+          <div style={contentStyle}>
+            <Layout style={userSearch}>
+              <User />
+              <SearchBox style={{ width: "100%" }} searchHandler={setQuery} />
+            </Layout>
             <Row gutter={16} type="flex" justify="center">
-              {/* { loading && 
-                  <Loader />
-                } */}
-
               {error !== null && (
                 <div style={{ margin: "20px 0" }}>
                   <Alert message={error} type="error" />
@@ -110,7 +116,6 @@ export default function App() {
                     ActivateModal={setActivateModal}
                     key={index}
                     {...result}
-                    
                   />
                 ))
               )}
@@ -124,14 +129,15 @@ export default function App() {
             footer={null}
             width={800}
           >
-            {detailRequest === false ? <MovieDetail movie={detail}/> : <Loader />}
+            {detailRequest === false ? (
+              <MovieDetail movie={detail} />
+            ) : (
+              <Loader />
+            )}
           </Modal>
         </Content>
-        <Footer style={{ textAlign: "center" }}>OMDB Movies 2019</Footer>
+        <Footer />
       </Layout>
-    </div>
     </GlobalProvider>
   );
 }
-
-// export default App;
