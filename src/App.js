@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./App.css";
 // import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {
@@ -33,8 +33,8 @@ const contentStyle = {
 };
 const headerStyle = {
   backgroundColor: "white",
-  maxHeight: "2em"
-}
+  height: "auto",
+};
 const userSearch = {
   display: "flex",
   justify: "space-around",
@@ -42,16 +42,24 @@ const userSearch = {
   justifyContent: "center",
   alignItems: "center",
   backgroundColor: "white",
-  margin: "2em"
+  margin: "2em",
 };
 const titleTextStyle = {
   color: "rgba(89,91,24,1)",
+  fontFamily: "Teko, sans-serif",
+  textAlign: "center",
 };
 const pageStyle = {
   backgroundColor: "white",
-  minHeight: "97vh"
-}
-
+  minHeight: "97vh",
+};
+const instructionStyle = {
+  textAlign: "center",
+  margin: "-2em",
+  color: "rgba(89,91,24,1)",
+  fontFamily: "Teko, sans-serif",
+  fontSize: "large",
+};
 export default function App() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -60,7 +68,8 @@ export default function App() {
   const [activateModal, setActivateModal] = useState(false);
   const [detail, setShowDetail] = useState(false);
   const [detailRequest, setDetailRequest] = useState(false);
-  const { isLoading } = useAuth0();
+  const { nominatedMovies } = useContext(GlobalContext);
+  const { isLoading, isAuthenticated } = useAuth0();
 
   useEffect(() => {
     setLoading(true);
@@ -90,11 +99,15 @@ export default function App() {
       <Layout style={pageStyle} className="layout">
         <Navbar />
         <br />
-        <Header style={headerStyle} >
-          <div style={{ textAlign: "center" }}>
+        <Header style={headerStyle}>
+          <div>
             <TextTitle style={titleTextStyle} level={3}>
               APP made with OMDB API + React
             </TextTitle>
+            {!isAuthenticated && (
+              <p style={instructionStyle}>Login to select your 5 nominees</p>
+            )}
+          
           </div>
         </Header>
         <br />
@@ -104,16 +117,21 @@ export default function App() {
               <User />
               <div>
                 <SearchBox searchHandler={setQuery} />
-                {q === null &&  <Alert message="Enter your movie search above" type="warning"/>}
+                {q === null && (
+                  <Alert
+                    message="Enter your movie search above"
+                    type="warning"
+                  />
+                )}
               </div>
-              </Layout>
+            </Layout>
             <Row gutter={16} type="flex" justify="center">
               {error !== null && (
                 <div style={{ margin: "20px 0" }}>
                   <Alert message={error} type="error" />
                 </div>
               )}
-              {q !== null && (
+              {q !== null &&
                 data !== null &&
                 data.length > 0 &&
                 data.map((result, index) => (
@@ -124,10 +142,8 @@ export default function App() {
                     key={index}
                     {...result}
                   />
-                ))
-              )}
+                ))}
             </Row>
- 
           </div>
           <Modal
             title="Movie Detail"

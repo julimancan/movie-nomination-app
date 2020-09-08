@@ -14,10 +14,13 @@ const userStyle = {
   alignItems: "center",
   borderRadius: ".3em",
   padding: "0.2em",
-  margin: "2em 5em 2em"
+  margin: "2em 5em 2em",
+  boxShadow: "rgba(0, 0, 0, 0.75) 10px 10px 5px -8px",
+
 };
 const userNameStyle = {
   color: "rgba(89,91,24,1)",
+  fontFamily: 'Teko, sans-serif',
 };
 
 const User = () => {

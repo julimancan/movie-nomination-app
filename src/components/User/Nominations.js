@@ -3,7 +3,8 @@ import { Table, Drawer, Button } from "antd";
 import { GlobalContext } from "../../context/GlobalState";
 
 const buttonStyle = {
-  // borderColor: "grey",
+  borderColor: "rgba(89,91,24,1)",
+  color: "rgba(89,91,24,1)",
   // backgroundColor: "rgba(89,91,24,1)",
   margin: ".3em",
   border: "solid 0.1em",

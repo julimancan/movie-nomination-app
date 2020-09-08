@@ -39,7 +39,7 @@ export default function MovieDetail ({ movie }) {
       
           {isAuthenticated && 
           nominatedMovies.length >= 5 ? <Alert message='There are already 5 nominees! Thank you for participating.' type="warning"/> :
-          <Row><Button disabled={nominatedButtonDisabled} onClick={() => addMovieToNominated(movie)}>Click here to nominate</Button> </Row>} 
+          isAuthenticated && <Row><Button disabled={nominatedButtonDisabled} onClick={() => addMovieToNominated(movie)}>Click here to nominate</Button> </Row>} 
        
         <Row>
           <Col span={21}>
