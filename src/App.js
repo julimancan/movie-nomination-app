@@ -11,7 +11,7 @@ import User from "./components/User/User";
 import { GlobalProvider } from "./context/GlobalState";
 import Navbar from "./components/Navigation/Navbar";
 
-const API_KEY = "a98b42a1";
+// const API_KEY = "a98b42a1";
 // const API_KEY = process.env.API_KEY;
 const { Header, Content } = Layout;
 const TextTitle = Typography.Title;
