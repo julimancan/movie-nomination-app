@@ -12,10 +12,13 @@ Shopify has branched out into movie award shows and we need your help. Please bu
 Checkout my [deployed app](https://stupefied-mcclintock-14f873.netlify.app/)
 
 ## Final Product
+#### Home Page with a search of The Julian Awards
 !["Home Page with a search of The Julian Awards"](https://github.com/julimancan/movie-nomination-app/blob/master/public/images/movieSearch.png)
 
+#### Movie Details
 !["Movie Details"](https://github.com/julimancan/movie-nomination-app/blob/master/public/images/movieDetails.png)
 
+#### Nominee Table
 !["Nominee Table"](https://github.com/julimancan/movie-nomination-app/blob/master/public/images/nominees.png)
 
 
