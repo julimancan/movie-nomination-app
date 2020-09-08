@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
 import { Row, Col, Tag, Typography, Button, Alert } from "antd";
 import "antd/dist/antd.css";
-import { useAuth0 } from "@auth0/auth0-react";
 import { GlobalContext } from "../../context/GlobalState";
 
 const MovieDetail = ({ movie }) => {
   const TextTitle = Typography.Title;
-  const { isAuthenticated } = useAuth0();
   const { addMovieToNominated, nominatedMovies } = useContext(GlobalContext);
 
   let storedMovie = nominatedMovies.find((o) => o.imdbID === movie.imdbID);
@@ -28,13 +26,12 @@ const MovieDetail = ({ movie }) => {
         />
       </Col>
       <Col span={13}>
-        {isAuthenticated && nominatedMovies.length >= 5 ? (
+        {nominatedMovies.length >= 5 ? (
           <Alert
             message="There are already 5 nominees! Thank you for participating."
             type="warning"
           />
         ) : (
-          isAuthenticated && (
             <Row>
               <Button
                 disabled={nominatedButtonDisabled}
@@ -43,7 +40,7 @@ const MovieDetail = ({ movie }) => {
                 Click here to nominate
               </Button>{" "}
             </Row>
-          )
+          
         )}
 
         <Row>

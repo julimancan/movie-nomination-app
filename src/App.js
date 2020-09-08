@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Layout, Row, Alert, Modal, Typography } from "antd";
 import "antd/dist/antd.css";
-import { useAuth0 } from "@auth0/auth0-react";
 import SearchBox from "./components/SearchBox/SearchBox";
 import ColCardBox from "./components/ColCardBox/ColCardBox";
 import MovieDetail from "./components/MovieDetail/MovieDetail";
-
-import User from "./components/User/User";
-
 import { GlobalProvider } from "./context/GlobalState";
 import Navbar from "./components/Navigation/Navbar";
 
-// const API_KEY = "a98b42a1";
-// const API_KEY = process.env.API_KEY;
 const { Header, Content } = Layout;
 const TextTitle = Typography.Title;
 
@@ -55,7 +49,6 @@ const App = () => {
   const [activateModal, setActivateModal] = useState(false);
   const [detail, setShowDetail] = useState(false);
   const [detailRequest, setDetailRequest] = useState(false);
-  const { isLoading, isAuthenticated } = useAuth0();
 
   useEffect(() => {
     setError(null);
@@ -73,8 +66,7 @@ const App = () => {
       })
       .catch(({ message }) => setError(message));
   }, [q]);
-  if (isLoading) return <div>Loading...</div>;
-
+  
   return (
     <GlobalProvider>
       <Layout style={pageStyle} className="layout">
@@ -85,16 +77,15 @@ const App = () => {
             <TextTitle style={titleTextStyle} level={3}>
               APP made with OMDB API + React
             </TextTitle>
-            {!isAuthenticated && (
-              <p style={instructionStyle}>Login to select your 5 nominees</p>
-            )}
+         
+              <p style={instructionStyle}>Select your nominees</p>
+         
           </div>
         </Header>
         <br />
         <Content>
           <div style={contentStyle}>
             <Layout style={userSearch}>
-              <User />
               <div>
                 <SearchBox searchHandler={setQuery} />
                 {q === null && (
