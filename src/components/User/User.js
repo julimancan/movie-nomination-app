@@ -4,7 +4,7 @@ import Nominations from "./Nominations";
 
 const imageStyle = {
   height: "7em",
-  margin: ".3em"
+  margin: ".3em",
 };
 const userStyle = {
   width: "10em",
@@ -16,11 +16,10 @@ const userStyle = {
   padding: "0.2em",
   margin: "2em 5em 2em",
   boxShadow: "rgba(0, 0, 0, 0.75) 10px 10px 5px -8px",
-
 };
 const userNameStyle = {
   color: "rgba(89,91,24,1)",
-  fontFamily: 'Teko, sans-serif',
+  fontFamily: "Teko, sans-serif",
 };
 
 const User = () => {

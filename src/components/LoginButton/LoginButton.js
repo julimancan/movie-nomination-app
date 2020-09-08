@@ -4,7 +4,7 @@ import { Button } from "antd";
 
 const buttonStyle = {
   borderColor: "#BBBD71",
-  color: "#BBBD71"
+  color: "#BBBD71",
 };
 
 const LoginButton = () => {
@@ -12,9 +12,7 @@ const LoginButton = () => {
 
   return (
     !isAuthenticated && (
-      <Button ghost onClick={() => loginWithRedirect()} 
-        style={buttonStyle}
-      >
+      <Button ghost onClick={() => loginWithRedirect()} style={buttonStyle}>
         Log In
       </Button>
     )

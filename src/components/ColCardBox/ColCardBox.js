@@ -1,14 +1,12 @@
 import React from "react";
-import { Layout, Row, Col, Card, Tag, Typography, Button } from "antd";
+import { Row, Col, Card, Button } from "antd";
 import "antd/dist/antd.css";
 
 const API_KEY = "a98b42a1";
-const { Meta } = Card;
 
 const buttonStyle = {
   borderColor: "#BBBD71",
   color: "#BBBD71",
-  // margin: "0 0 0 -1em"
 };
 const cardStyle = {
   width: 200,
@@ -23,19 +21,18 @@ const nameDetails = {
 };
 const titleStyle = {
   color: "#BBBD71",
-  fontFamily: 'Teko, sans-serif',
-  fontSize: "large"
+  fontFamily: "Teko, sans-serif",
+  fontSize: "large",
 };
 
-export default function ColCardBox({
+const ColCardBox = ({
   Title,
   imdbID,
   Poster,
-  Type,
   setShowDetail,
   DetailRequest,
   ActivateModal,
-}) {
+}) => {
   const clickHandler = () => {
     ActivateModal(true);
     DetailRequest(true);
@@ -81,4 +78,6 @@ export default function ColCardBox({
       </div>
     </Col>
   );
-}
+};
+
+export default ColCardBox;

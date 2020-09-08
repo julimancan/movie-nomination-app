@@ -11,19 +11,21 @@ const buttonStyle = {
   width: "98px",
 };
 
-
 const Nominations = () => {
-
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const { nominatedMovies, deleteMovieFromNominated } = useContext(GlobalContext);
+  const { nominatedMovies, deleteMovieFromNominated } = useContext(
+    GlobalContext
+  );
 
   const toggleDrawer = () => setDrawerOpen(!drawerOpen);
 
   const DrawerButton = () => {
     return (
-      <Button text style={buttonStyle} onClick={() => setDrawerOpen(true)}>Nominees</Button>
-    )
-  }
+      <Button text style={buttonStyle} onClick={() => setDrawerOpen(true)}>
+        Nominees
+      </Button>
+    );
+  };
 
   const onClose = () => setDrawerOpen(false);
 
@@ -33,29 +35,30 @@ const Nominations = () => {
       title: "Action",
       dataIndex: "",
       key: "x",
-      render: (movie, record) => <Button 
-                      onClick={() => deleteMovieFromNominated(movie.imdbID)} 
-                      // onClick={(e) => { this.onDelete(record.key, e); }}
-                    >Delete</Button>,
+      render: (movie) => (
+        <Button onClick={() => deleteMovieFromNominated(movie.imdbID)}>
+          Delete
+        </Button>
+      ),
     },
   ];
-  
+
   return (
     <div>
-      <DrawerButton style={buttonStyle} onClick={toggleDrawer}/>
-      <Drawer 
+      <DrawerButton style={buttonStyle} onClick={toggleDrawer} />
+      <Drawer
         visible={drawerOpen}
         destroyOnClose
-        title = "Your nominees are:"
+        title="Your nominees are:"
         onClose={onClose}
         width={"50em"}
       >
-      <Table
-        columns={columns}
-        dataSource={nominatedMovies}
-        pagination={false}
-      />
-      ,
+        <Table
+          columns={columns}
+          dataSource={nominatedMovies}
+          pagination={false}
+        />
+        ,
       </Drawer>
     </div>
   );
