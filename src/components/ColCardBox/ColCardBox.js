@@ -2,7 +2,9 @@ import React from "react";
 import { Row, Col, Card, Button } from "antd";
 import "antd/dist/antd.css";
 
-const API_KEY = process.env.API_KEY;
+// const API_KEY = process.env.API_KEY;
+const API_KEY = "a98b42a1";
+
 
 const buttonStyle = {
   borderColor: "#BBBD71",
