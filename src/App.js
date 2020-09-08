@@ -1,18 +1,17 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { Layout, Row, Alert, Modal, Typography } from "antd";
 import "antd/dist/antd.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import SearchBox from "./components/SearchBox/SearchBox";
 import ColCardBox from "./components/ColCardBox/ColCardBox";
 import MovieDetail from "./components/MovieDetail/MovieDetail";
-import Loader from "./components/Loader/Loader";
 
 import User from "./components/User/User";
 
-import { GlobalContext, GlobalProvider } from "./context/GlobalState";
+import { GlobalProvider } from "./context/GlobalState";
 import Navbar from "./components/Navigation/Navbar";
 
-const API_KEY = "a98b42a1";
+const API_KEY = process.env.API_KEY;
 const { Header, Content } = Layout;
 const TextTitle = Typography.Title;
 
@@ -133,10 +132,8 @@ const App = () => {
             footer={null}
             width={800}
           >
-            {detailRequest === false ? (
+            {detailRequest === false && (
               <MovieDetail movie={detail} />
-            ) : (
-              <Loader />
             )}
           </Modal>
         </Content>
