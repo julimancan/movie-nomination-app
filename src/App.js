@@ -28,7 +28,6 @@ const userSearch = {
   justifyContent: "center",
   alignItems: "center",
   backgroundColor: "white",
-  margin: "2em",
 };
 const titleTextStyle = {
   color: "rgba(89,91,24,1)",
