@@ -6,6 +6,7 @@ import ColCardBox from "./components/ColCardBox/ColCardBox";
 import MovieDetail from "./components/MovieDetail/MovieDetail";
 import { GlobalProvider } from "./context/GlobalState";
 import Navbar from "./components/Navigation/Navbar";
+import Nominations from "./components/Nominations/Nominations";
 
 const { Header, Content } = Layout;
 const TextTitle = Typography.Title;
@@ -16,6 +17,9 @@ const contentStyle = {
 const headerStyle = {
   backgroundColor: "white",
   height: "auto",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center"
 };
 const userSearch = {
   display: "flex",
@@ -79,8 +83,9 @@ const App = () => {
             </TextTitle>
          
               <p style={instructionStyle}>Select your nominees</p>
-         
+
           </div>
+              <Nominations />
         </Header>
         <br />
         <Content>

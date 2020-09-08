@@ -1,6 +1,5 @@
 import React from "react";
 import { Menu, Typography } from "antd";
-import Nominations from "../Nominations/Nominations";
 
 const headerStyle = {
   background: "rgb(28,26,26)linear-gradient(90deg, rgba(28,26,26,1) 0%, rgba(55,56,22,1) 3%, rgba(89,91,24,1) 7%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(89,91,24,1) 93%, rgba(55,56,22,1) 97%, rgba(10,0,17,1) 100%)",
@@ -30,7 +29,6 @@ const Navbar = () => {
           </TextTitle>
         </Menu.Item>
         <Menu.Item>
-          <Nominations />
         </Menu.Item>
       </Menu>
     </div>
