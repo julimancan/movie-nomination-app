@@ -99,7 +99,7 @@ const App = () => {
                 <SearchBox searchHandler={setQuery} />
                 {q === null && (
                   <Alert
-                    message="Enter your movie search above"
+                    message="Enter your movie search above!"
                     type="warning"
                   />
                 )}
