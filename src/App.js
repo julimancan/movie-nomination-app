@@ -61,7 +61,7 @@ const App = () => {
     setError(null);
     setData(null);
 
-    fetch(`https://www.omdbapi.com/?s=${q}&type=movie&apikey=${API_KEY}`)
+    fetch(`https://www.omdbapi.com/?s=${q}&type=movie&apikey=a98b42a1`)
       .then((resp) => resp)
       .then((resp) => resp.json())
       .then((response) => {
